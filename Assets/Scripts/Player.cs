@@ -29,15 +29,17 @@ public class Player : MonoBehaviour
     private void Movement()
     {
         //Time.deltaTime = por segundo
-        float hInput = Input.GetAxis("Horizontal");
-        float vInput = Input.GetAxis("Vertical");
+        float hInput = Input.GetAxisRaw("Horizontal");
+        float vInput = Input.GetAxisRaw("Vertical");
         
         Vector3 Movement = new Vector3(hInput, vInput, 0f).normalized;
         
         //this.gameObject.transform.position += Movement * (3 * Time.deltaTime);
         
-        this.gameObject.transform.Translate(Movement * (10f * Time.deltaTime), Space.World);
+        //gameObject.transform.Translate(Movement * (10f * Time.deltaTime), Space.World);
+        GetComponent<Rigidbody2D>().MovePosition(Movement.normalized * (10f * Time.deltaTime));
     }
+    
     
     
     private void OnTriggerEnter2D(Collider2D other)
@@ -47,7 +49,7 @@ public class Player : MonoBehaviour
             ObtainCoins(other);
         }
 
-        else if (other.gameObject.CompareTag("Aspa"))
+        else if (other.gameObject.CompareTag("Trampa"))
         {
             transform.position = PosicionInicial;
         }
