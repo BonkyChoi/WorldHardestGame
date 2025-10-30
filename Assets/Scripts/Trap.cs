@@ -4,6 +4,7 @@ public class Trap : MonoBehaviour
 {
     [SerializeField] float velocidad;
     [SerializeField] private Vector3 direccionInicial;
+    [SerializeField] private float TimeMoving = 2;
     
     private Vector3 direccionActual;
 
@@ -20,7 +21,7 @@ public class Trap : MonoBehaviour
         timer += Time.deltaTime;
         
         transform.Translate(direccionActual * (velocidad * Time.deltaTime));
-        if (timer >= 2)
+        if (timer >= TimeMoving)
         {
             direccionActual *= -1;
             timer = 0;

@@ -2,20 +2,23 @@ using System;
 using TMPro;
 using Unity.VisualScripting;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class Player : MonoBehaviour
 {
     [SerializeField] TMP_Text textoscore;
+    [SerializeField] float speed = 10f;
     
     private Vector3 PosicionInicial;
     int coins;
-    
+    int numberOfCoins;
     
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     
     void Start()
     {
         PosicionInicial = transform.position;
+        numberOfCoins = GameObject.FindGameObjectsWithTag("Coin").Length;
     }
 
     
@@ -36,8 +39,8 @@ public class Player : MonoBehaviour
         
         //this.gameObject.transform.position += Movement * (3 * Time.deltaTime);
         
-        //gameObject.transform.Translate(Movement * (10f * Time.deltaTime), Space.World);
-        GetComponent<Rigidbody2D>().MovePosition(Movement.normalized * (10f * Time.deltaTime));
+        gameObject.transform.Translate(Movement * (speed * Time.deltaTime), Space.World);
+        
     }
     
     
@@ -51,15 +54,24 @@ public class Player : MonoBehaviour
 
         else if (other.gameObject.CompareTag("Trampa"))
         {
-            transform.position = PosicionInicial;
+            //transform.position = PosicionInicial;
+            SceneManager.LoadScene(SceneManager.GetActiveScene().name);
+        }
+        
+        else if (other.gameObject.CompareTag("Meta") && coins >= numberOfCoins)
+        {
+            SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex + 1);
         }
     }
 
     private void ObtainCoins(Collider2D other)
     {
         coins++;
-        textoscore.text = "Score: " + coins;
+        textoscore.text = "Coins: " + coins + " / " + numberOfCoins;
         Destroy(other.gameObject);
         Debug.Log(coins);
+        
+        
     }
+    
 }

@@ -14,7 +14,7 @@ GameObject:
   - component: {fileID: 5798052859044597365}
   - component: {fileID: 3634050431964990800}
   m_Layer: 0
-  m_Name: Square
+  m_Name: Player
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -30,7 +30,7 @@ Transform:
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 6.94, y: 0, z: 0}
-  m_LocalScale: {x: 0.79, y: 0.79, z: 0.79}
+  m_LocalScale: {x: 0.645746, y: 0.645746, z: 0.645746}
   m_ConstrainProportionsScale: 1
   m_Children: []
   m_Father: {fileID: 0}
@@ -106,6 +106,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::Player
   textoscore: {fileID: 0}
+  speed: 8
 --- !u!61 &5798052859044597365
 BoxCollider2D:
   m_ObjectHideFlags: 0
