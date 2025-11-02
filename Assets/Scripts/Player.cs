@@ -54,7 +54,7 @@ public class Player : MonoBehaviour
 
         else if (other.gameObject.CompareTag("Trampa"))
         {
-            //transform.position = PosicionInicial;
+            //transform.position = PosicionInicial; 
             SceneManager.LoadScene(SceneManager.GetActiveScene().name);
         }
         
